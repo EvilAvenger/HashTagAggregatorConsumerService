@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashtagAggregatorConsumer.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashTagAggregatorConsumer.Service", "HashTagAggregatorConsumer.Service\HashTagAggregatorConsumer.Service.csproj", "{CD6A5AD4-4233-4526-90B4-846389D671E5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashtagAggregatorConsumer.Data", "HashtagAggregatorConsumer.Data\HashtagAggregatorConsumer.Data.csproj", "{37D1C0E2-D241-4330-ADAA-11C482DA8E53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CD6A5AD4-4233-4526-90B4-846389D671E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD6A5AD4-4233-4526-90B4-846389D671E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD6A5AD4-4233-4526-90B4-846389D671E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37D1C0E2-D241-4330-ADAA-11C482DA8E53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37D1C0E2-D241-4330-ADAA-11C482DA8E53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37D1C0E2-D241-4330-ADAA-11C482DA8E53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37D1C0E2-D241-4330-ADAA-11C482DA8E53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

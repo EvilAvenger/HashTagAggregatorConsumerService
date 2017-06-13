@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace HashTagAggregatorConsumerService
+namespace HashTagAggregatorConsumer.Service
 {
     public class Program
     {
