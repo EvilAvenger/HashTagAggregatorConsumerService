@@ -7,4 +7,9 @@
     <OutputTypeEx>library</OutputTypeEx>
     <StartupObject />
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HashtagAggregator.Shared.Common" Version="1.0.3" />
+    <PackageReference Include="HashtagAggregator.Shared.Contracts" Version="1.0.2" />
+  </ItemGroup>
 </Project>

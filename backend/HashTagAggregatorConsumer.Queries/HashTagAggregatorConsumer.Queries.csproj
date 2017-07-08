@@ -22,5 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HashtagAggregatorConsumer.Contracts\HashtagAggregatorConsumer.Contracts.csproj" />
+    <ProjectReference Include="..\HashtagAggregatorConsumer.Models\HashtagAggregatorConsumer.Models.csproj" />
   </ItemGroup>
 </Project>

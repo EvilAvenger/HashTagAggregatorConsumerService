@@ -4,6 +4,7 @@ using HashtagAggregator.Shared.Contracts.Enums;
 using HashtagAggregatorConsumer.Models;
 using HashTagAggregatorConsumer.Queries.Cqrs.Commands;
 using Tweetinvi.Models;
+using System.Linq;
 
 namespace HashTagAggregatorConsumer.Data.Twitter.Mappers
 {
