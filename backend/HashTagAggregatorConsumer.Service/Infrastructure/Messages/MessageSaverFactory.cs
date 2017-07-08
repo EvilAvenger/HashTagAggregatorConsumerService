@@ -1,5 +1,8 @@
 ﻿using HashtagAggregatorConsumer.Contracts.Interface.Messages;
+using HashTagAggregatorConsumer.Data.Twitter.Messages;
+using HashTagAggregatorConsumer.Data.Vk.Messages;
 using HashTagAggregatorConsumer.Service.Settings;
+using MediatR;
 using Microsoft.Extensions.Options;
 
 namespace HashTagAggregatorConsumer.Service.Infrastructure.Messages
@@ -7,10 +10,12 @@ namespace HashTagAggregatorConsumer.Service.Infrastructure.Messages
     public class MessageSaverFactory : IMessageSaverFactory
     {
         private readonly IOptions<QueueSettings> queueSettings;
+        private readonly IMediator mediator;
 
-        public MessageSaverFactory(IOptions<QueueSettings> queueSettings)
+        public MessageSaverFactory(IOptions<QueueSettings> queueSettings, IMediator mediator)
         {
             this.queueSettings = queueSettings;
+            this.mediator = mediator;
         }
 
         public IMessageSaver GetSaver(string queueName)
@@ -18,11 +23,11 @@ namespace HashTagAggregatorConsumer.Service.Infrastructure.Messages
             IMessageSaver saver = null;
             if (queueSettings.Value.TwitterQueueName.Equals(queueName))
             {
-                saver = new TwitterMessageSaver();
+                saver = new TwitterMessageSaver(mediator);
             }
             else if (queueSettings.Value.VkQueueName.Equals(queueName))
             {
-                saver = new VkMessageSaver();
+                saver = new VkMessageSaver(mediator);
             }
             return saver;
         }

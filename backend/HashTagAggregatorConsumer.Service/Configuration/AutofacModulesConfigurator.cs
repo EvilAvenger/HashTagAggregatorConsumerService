@@ -15,6 +15,7 @@ namespace HashTagAggregatorConsumer.Service.Configuration
             builder.RegisterLogger();
 
             builder.RegisterModule<CommonModule>();
+            builder.RegisterModule<MediatrModule>();
 
             builder.Populate(services);
             return builder.Build();

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <ApplicationIcon />
+    <OutputTypeEx>library</OutputTypeEx>
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HashtagAggregator.Service.Contracts" Version="1.0.0" />
+    <PackageReference Include="MediatR" Version="3.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HashtagAggregatorConsumer.Contracts\HashtagAggregatorConsumer.Contracts.csproj" />
+    <ProjectReference Include="..\HashtagAggregatorConsumer.Models\HashtagAggregatorConsumer.Models.csproj" />
+  </ItemGroup>
+</Project>
