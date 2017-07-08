@@ -1,22 +1,31 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+
+using HashtagAggregatorConsumer.Contracts.Interface;
 
 namespace HashTagAggregatorConsumer.Service.Controllers
 {
     [Route("api/[controller]")]
     public class HeartBeatController : Controller
     {
-        [HttpGet("start/{hashtag:required}")]
-        public Task<IActionResult> Start(string hashtag)
+        private readonly IBackgroundServiceWorker worker;
+
+        public HeartBeatController(IBackgroundServiceWorker worker)
         {
-            throw new NotImplementedException();
+            this.worker = worker;
         }
 
-        [HttpGet("stop/{hashtag:required}")]
-        public IActionResult Stop(string hashtag)
+        [HttpGet("start/{name:required}/{interval:int}")]
+        public IActionResult Start(string name, int interval)
         {
-            throw new NotImplementedException();
+            var result = worker.Start(name, interval);
+            return Ok(result);
+        }
+
+        [HttpGet("stop")]
+        public IActionResult Stop(string name)
+        {
+            worker.Stop(name);
+            return Ok();
         }
     }
 }

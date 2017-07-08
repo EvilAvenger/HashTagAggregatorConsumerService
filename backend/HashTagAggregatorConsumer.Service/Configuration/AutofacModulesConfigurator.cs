@@ -2,7 +2,7 @@
 using Autofac.Extensions.DependencyInjection;
 using AutofacSerilogIntegration;
 
-using HashtagAggregatorTwitter.Service.Configuration.Modules;
+using HashTagAggregatorConsumer.Service.Configuration.Modules;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HashTagAggregatorConsumer.Service.Configuration
