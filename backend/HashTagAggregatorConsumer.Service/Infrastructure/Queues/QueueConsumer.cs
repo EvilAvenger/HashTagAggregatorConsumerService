@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using HashtagAggregatorConsumer.Contracts.Interface;
 
@@ -15,15 +16,16 @@ namespace HashTagAggregatorConsumer.Service.Infrastructure.Queues
             this.initializer = initializer;
         }
 
-        public async Task<CloudQueueMessage> Dequeue(string queueName)
+        public async Task<CloudQueueMessage> DequeueAsync(string queueName)
         {
-            CloudQueueMessage message = null;
             var queue = GetQueue(queueName);
-            if (queue != null)
-            {
-                message = await queue.GetMessageAsync();
-            }
-            return message;
+            return await Dequeue(queue);
+        }
+
+        public IEnumerable<CloudQueueMessage> DequeueMany(string queueName)
+        {
+            var queue = GetQueue(queueName);
+            yield return Dequeue(queue).Result;
         }
 
         public async Task DeleteMessage(string queueName, CloudQueueMessage message)
@@ -46,6 +48,16 @@ namespace HashTagAggregatorConsumer.Service.Infrastructure.Queues
                 cachedMessageCount = queue.ApproximateMessageCount;
             }
             return cachedMessageCount;
+        }
+
+        private async Task<CloudQueueMessage> Dequeue(CloudQueue queue)
+        {
+            CloudQueueMessage message = null;
+            if (queue != null)
+            {
+                message = await queue.GetMessageAsync();
+            }
+            return message;
         }
 
         private CloudQueue GetQueue(string queueName)

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using HashtagAggregator.Shared.Common.Infrastructure;
+﻿using HashtagAggregator.Shared.Common.Infrastructure;
 using HashtagAggregator.Shared.Contracts.Enums;
 using HashtagAggregatorConsumer.Models;
 using HashTagAggregatorConsumer.Queries.Cqrs.Commands;
@@ -21,11 +20,11 @@ namespace HashTagAggregatorConsumer.Data.Twitter.Mappers
                 MediaType = SocialMediaType.Twitter
             };
 
-            List<HashtagModel> tags = tweet.Hashtags.Select(x => new HashtagModel
-            {
-                HashTag = new HashTagWord(x.Text),
-                IsEnabled = false
-            }).ToList();
+            var tags = tweet.Hashtags.Select(x => new HashtagModel
+                {
+                    HashTag = new HashTagWord(x.Text),
+                    IsEnabled = false
+                }).ToList();
 
             var message = new CreateMessageCommand
             {

@@ -24,9 +24,9 @@ namespace HashTagAggregatorConsumer.Service.Infrastructure.Jobs
 
         public async Task<ICommandResult> Execute(ConsumerJobTask task)
         {
-            var message = await queue.Dequeue(task.QueueName);
             var saver = factory.GetSaver(task.QueueName);
-            var result = await saver.Save(message);
+            var message = await queue.DequeueAsync(task.QueueName);
+            ICommandResult result = await saver.Save(message);
             await queue.DeleteMessage(task.QueueName, message);
             return result;
         }

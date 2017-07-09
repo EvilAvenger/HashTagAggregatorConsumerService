@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
+﻿using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
 
-namespace HashtagAggregatorConsumer.Data.CQRS
+namespace HashtagAggregatorConsumer.Data.Result
 {
     public class CommandResult : ICommandResult
     {

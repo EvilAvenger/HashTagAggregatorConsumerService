@@ -5,7 +5,7 @@ using Hangfire;
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
 using HashtagAggregatorConsumer.Contracts;
 using HashtagAggregatorConsumer.Contracts.Interface.Jobs;
-using HashtagAggregatorConsumer.Data.CQRS;
+using HashtagAggregatorConsumer.Data.Result;
 
 namespace HashTagAggregatorConsumer.Service.Infrastructure.Jobs
 {

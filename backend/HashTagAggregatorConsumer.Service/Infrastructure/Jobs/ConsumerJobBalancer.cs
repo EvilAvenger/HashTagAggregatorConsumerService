@@ -4,7 +4,7 @@ using HashtagAggregator.Service.Contracts;
 using HashtagAggregatorConsumer.Contracts;
 using HashtagAggregatorConsumer.Contracts.Interface;
 using HashtagAggregatorConsumer.Contracts.Interface.Jobs;
-using HashtagAggregatorConsumer.Data.CQRS;
+using HashtagAggregatorConsumer.Data.Result;
 
 namespace HashTagAggregatorConsumer.Service.Infrastructure.Jobs
 {
