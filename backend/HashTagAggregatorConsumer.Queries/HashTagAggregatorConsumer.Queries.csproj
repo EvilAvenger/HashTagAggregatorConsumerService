@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="HashtagAggregator.Core.Entities" Version="1.0.1" />
-    <PackageReference Include="HashtagAggregator.Data.DataAccess" Version="1.0.1" />
+    <PackageReference Include="HashtagAggregator.Data.DataAccess" Version="1.0.2" />
     <PackageReference Include="MediatR" Version="3.0.1" />
   </ItemGroup>
 

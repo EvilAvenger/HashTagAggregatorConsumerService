@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="HashtagAggregator.Core.Contracts" Version="1.0.3" />
+    <PackageReference Include="HashtagAggregator.Core.Contracts" Version="1.0.4" />
     <PackageReference Include="HashtagAggregator.Service.Contracts" Version="1.0.0" />
   </ItemGroup>
 </Project>
