@@ -13,6 +13,7 @@ namespace HashTagAggregatorConsumer.Service
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseUrls("http://localhost:5020/")
                 .UseDefaultServiceProvider(options =>
                     options.ValidateScopes = false)
                 .Build();

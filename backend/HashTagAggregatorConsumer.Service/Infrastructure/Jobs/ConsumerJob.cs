@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Hangfire;
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
 using HashtagAggregatorConsumer.Contracts;
 using HashtagAggregatorConsumer.Contracts.Interface;
 using HashtagAggregatorConsumer.Contracts.Interface.Jobs;
 using HashtagAggregatorConsumer.Contracts.Interface.Messages;
+using HashtagAggregatorConsumer.Data.Result;
 using Microsoft.Extensions.Logging;
 
 namespace HashTagAggregatorConsumer.Service.Infrastructure.Jobs
 {
+    [AutomaticRetry(Attempts = 1)]
     public class ConsumerJob : IConsumberJob
     {
         private readonly IQueueConsumer queue;
@@ -24,10 +27,17 @@ namespace HashTagAggregatorConsumer.Service.Infrastructure.Jobs
 
         public async Task<ICommandResult> Execute(ConsumerJobTask task)
         {
-            var saver = factory.GetSaver(task.QueueName);
-            var message = await queue.DequeueAsync(task.QueueName);
-            ICommandResult result = await saver.Save(message);
-            await queue.DeleteMessage(task.QueueName, message);
+            var saver = factory.GetSaver(task.QueueParameters.Name);
+            var message = await queue.DequeueAsync(task.QueueParameters.Name);
+            ICommandResult result = new CommandResult {Success = true};
+            if (message != null)
+            {
+                result = await saver.Save(message);
+                if (result.Success)
+                {
+                    await queue.DeleteMessage(task.QueueParameters.Name, message);
+                }
+            }
             return result;
         }
     }

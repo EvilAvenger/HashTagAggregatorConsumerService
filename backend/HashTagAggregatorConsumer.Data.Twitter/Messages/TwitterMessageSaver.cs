@@ -5,6 +5,10 @@ using HashTagAggregatorConsumer.Data.Twitter.Extensions;
 using HashTagAggregatorConsumer.Data.Twitter.Mappers;
 using MediatR;
 using Microsoft.WindowsAzure.Storage.Queue;
+using Tweetinvi;
+using Tweetinvi.Models;
+using Tweetinvi.Models.DTO;
+
 
 namespace HashTagAggregatorConsumer.Data.Twitter.Messages
 {
@@ -19,9 +23,9 @@ namespace HashTagAggregatorConsumer.Data.Twitter.Messages
 
         public async Task<ICommandResult> Save(CloudQueueMessage message)
         {
-            var tweet = message.ToTweet();
+            var tweetDto = message.ToTweet();
             var mapper = new TwitterMessageMapper();
-            var command = mapper.MapSingle(tweet);
+            var command = mapper.MapSingle(Tweet.GenerateTweetFromDTO(tweetDto));
             return await mediator.Send(command);
         }
     }

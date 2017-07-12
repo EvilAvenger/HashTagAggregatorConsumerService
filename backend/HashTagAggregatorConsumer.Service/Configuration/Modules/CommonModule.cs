@@ -17,7 +17,7 @@ namespace HashTagAggregatorConsumer.Service.Configuration.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<SqlApplicationDbContext>().AsImplementedInterfaces();
+            builder.RegisterType<SqlApplicationDbContext>().AsSelf();
 
             builder.RegisterType<RecurringJobManager>().As<IConsumerJobManager>();
             builder.RegisterType<BackgroundServiceWorker>().As<IBackgroundServiceWorker>();

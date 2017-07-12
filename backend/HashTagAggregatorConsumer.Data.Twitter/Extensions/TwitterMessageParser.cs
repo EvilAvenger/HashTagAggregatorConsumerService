@@ -1,15 +1,16 @@
 ﻿using Microsoft.WindowsAzure.Storage.Queue;
 using Newtonsoft.Json;
-using Tweetinvi;
-using Tweetinvi.Models;
+using Tweetinvi.Logic.JsonConverters;
+using Tweetinvi.Models.DTO;
 
 namespace HashTagAggregatorConsumer.Data.Twitter.Extensions
 {
     public static class TwitterMessage
     {
-        public static ITweet ToTweet(this CloudQueueMessage message)
+        public static ITweetDTO ToTweet(this CloudQueueMessage message)
         {
-            return (ITweet) JsonConvert.DeserializeObject(message.AsString, typeof(Tweet));
+            return JsonConvert.DeserializeObject<ITweetDTO>(message.AsString,
+                JsonPropertiesConverterRepository.Converters);
         }
     }
 }

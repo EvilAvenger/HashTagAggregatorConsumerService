@@ -7,15 +7,15 @@ namespace HashtagAggregatorConsumer.Contracts
     {
         private const string JobIdPattern = "exchanequeue-dequeue-{0}-id";
 
-        public string QueueName { get; }
+        public QueueParams QueueParameters { get; set; }
 
         public int Interval { get; }
 
-        public string JobId => String.Format(JobIdPattern, QueueName);
+        public string JobId => String.Format(JobIdPattern, QueueParameters);
 
-        public ConsumerJobTask(string name, int interval)
+        public ConsumerJobTask(QueueParams parameters, int interval)
         {
-            QueueName = name;
+            QueueParameters = parameters;
             Interval = interval;
         }
     }

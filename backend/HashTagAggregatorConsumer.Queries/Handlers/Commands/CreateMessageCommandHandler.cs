@@ -26,7 +26,7 @@ namespace HashTagAggregatorConsumer.Queries.Handlers.Commands
             if (!context.Messages.Any(z => z.NetworkId == message.NetworkId && z.User != null && message.User != null &&
                                            z.User.NetworkId == message.User.NetworkId))
             {
-                if (message.User != null && !context.Users.Contains(message.User))
+                if (message.User != null && !context.Users.Any(x=>x.NetworkId == message.NetworkId))
                 {
                     context.Users.Add(message.User);
                     await context.SaveChangesAsync();

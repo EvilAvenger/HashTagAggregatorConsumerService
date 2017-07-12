@@ -1,6 +1,7 @@
 ﻿using System;
 using Autofac;
 using Hangfire;
+using Hangfire.Common;
 using HashtagAggregator.Data.DataAccess.Context;
 using HashTagAggregatorConsumer.Service.Configuration;
 using HashTagAggregatorConsumer.Service.Settings;
@@ -61,14 +62,21 @@ namespace HashTagAggregatorConsumer.Service
         {
             loggerFactory.AddDebug();
             loggerFactory.AddSerilog();
-
-            app.UseHangfireServer();
-
-            if (env.IsDevelopment())
+        
+            var options = new BackgroundJobServerOptions
+            {               
+                ServerName = "ConsumerServiceServer", 
+            };
+            app.UseHangfireServer(options);
+          
+            if (env.IsEnvironment("dev"))
             {
                 app.UseHangfireDashboard();
+
                 app.UseDeveloperExceptionPage();
+               // accessor.CancelRecurringJobs();
             }
+
             app.UseMvc();
         }
     }

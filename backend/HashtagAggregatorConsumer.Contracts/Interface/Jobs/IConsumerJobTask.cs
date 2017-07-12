@@ -6,7 +6,7 @@ namespace HashtagAggregatorConsumer.Contracts.Interface.Jobs
     {
         int Interval { get; }
 
-        string QueueName { get; }
+        QueueParams QueueParameters { get; }
 
         string JobId { get; }
     }

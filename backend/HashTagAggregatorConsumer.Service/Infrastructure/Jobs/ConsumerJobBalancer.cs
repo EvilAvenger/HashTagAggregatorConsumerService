@@ -23,14 +23,16 @@ namespace HashTagAggregatorConsumer.Service.Infrastructure.Jobs
         public ICommandResult TryCreateJob(string name, int interval)
         {
             var isAdded = new CommandResult();
-            var initTask = new ConsumerJobTask(name, interval);
+            var qName = new QueueParams(name);
+            var initTask = new ConsumerJobTask(qName, interval);
             jobManager.AddJob(initTask);
             return isAdded;
         }
 
         public void DeleteJob(string name)
         {
-            var task = new ConsumerJobTask(name, 0);
+            var qName = new QueueParams(name);
+            var task = new ConsumerJobTask(qName, 0);
             jobManager.DeleteJob(task);
         }
     }
