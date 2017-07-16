@@ -1,10 +1,10 @@
 ﻿using System;
 using Autofac;
 using Hangfire;
-using Hangfire.Common;
 using HashtagAggregator.Data.DataAccess.Context;
+using HashtagAggregator.Service.Contracts;
+using HashtagAggregatorConsumer.Contracts.Settings;
 using HashTagAggregatorConsumer.Service.Configuration;
-using HashTagAggregatorConsumer.Service.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +33,7 @@ namespace HashTagAggregatorConsumer.Service
         {
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.Configure<QueueSettings>(Configuration.GetSection("QueueSettings"));
+            services.Configure<HangfireSettings>(Configuration.GetSection("HangfireSettings"));
 
             var connectionString = Configuration.GetSection("AppSettings:ConnectionString").Value;
 
@@ -58,25 +59,34 @@ namespace HashTagAggregatorConsumer.Service
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
+            IStorageAccessor accessor)
         {
             loggerFactory.AddDebug();
             loggerFactory.AddSerilog();
-        
+
             var options = new BackgroundJobServerOptions
-            {               
-                ServerName = "ConsumerServiceServer", 
+            {
+                ServerName = Configuration.GetSection("HangfireSettings:ServerName").Value
             };
             app.UseHangfireServer(options);
-          
+
             if (env.IsEnvironment("dev"))
             {
                 app.UseHangfireDashboard();
-
                 app.UseDeveloperExceptionPage();
-               // accessor.CancelRecurringJobs();
             }
+            app.UseCors("CorsPolicy");
 
+            //app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
+            //{
+            //    Authority = Configuration.GetSection("EndpointSettings:AuthEndpoint").Value,
+            //    RequireHttpsMetadata = false, //todo: should be true when enabled https
+            //    ApiName = "ConsumerApiService",
+            //    CacheDuration = TimeSpan.FromMinutes(10)
+            //});
+
+            accessor.CancelRecurringJobs();
             app.UseMvc();
         }
     }

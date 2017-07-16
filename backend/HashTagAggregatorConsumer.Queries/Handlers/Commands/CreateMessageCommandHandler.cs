@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-
 using HashtagAggregator.Core.Entities.EF;
 using HashtagAggregator.Data.DataAccess.Context;
 using HashTagAggregatorConsumer.Queries.Cqrs.Commands;
@@ -21,40 +20,41 @@ namespace HashTagAggregatorConsumer.Queries.Handlers.Commands
 
         public async Task<CommandResult> Handle(CreateMessageCommand command)
         {
-            var mapper = new MessageCommandToEntityMapper();
-            var message = mapper.MapSingle(command);
-            if (!context.Messages.Any(z => z.NetworkId == message.NetworkId && z.User != null && message.User != null &&
-                                           z.User.NetworkId == message.User.NetworkId))
+            lock (this)
             {
-                if (message.User != null && !context.Users.Any(x=>x.NetworkId == message.NetworkId))
+                var mapper = new MessageCommandToEntityMapper();
+                var message = mapper.MapSingle(command);
+                if (!context.Messages.Any(z => z.NetworkId == message.NetworkId &&
+                                               z.User.NetworkId == message.User.NetworkId))
                 {
-                    context.Users.Add(message.User);
-                    await context.SaveChangesAsync();
-                }
-
-                message.User = context.Users.FirstOrDefault(x => x.NetworkId == message.User.NetworkId);
-                message.PostDate = message.PostDate?.ToUniversalTime();
-                context.Messages.Add(message);
-
-                foreach (var tag in message.HashTags)
-                {
-                    var tagToLink = context.Hashtags.FirstOrDefault(x => x.HashTag == tag.HashTag) ?? tag;
-
-                    var tag2Message = new MessageHashTagRelationsEntity
+                    if (!context.Users.Any(x => x.NetworkId == message.User.NetworkId))
                     {
-                        HashTagEntity = tagToLink,
-                        MessageEntity = message
-                    };
-                    context.TaggedMessages.Add(tag2Message);
-
-                    if (tagToLink.IsNew)
-                    {
-                        context.Hashtags.Add(tagToLink);
+                        context.Users.Add(message.User);
+                        context.SaveChanges();
                     }
+
+                    message.User = context.Users.FirstOrDefault(x => x.NetworkId == message.User.NetworkId);
+                    message.PostDate = message.PostDate?.ToUniversalTime();
+                    context.Messages.Add(message);
+
+                    foreach (var tag in message.HashTags)
+                    {
+                        var tagToLink = context.Hashtags.FirstOrDefault(x => x.HashTag == tag.HashTag);
+
+                        if (tagToLink != null)
+                        {
+                            var tag2Message = new MessageHashTagRelationsEntity
+                            {
+                                HashTagEntity = tagToLink,
+                                MessageEntity = message
+                            };
+                            context.TaggedMessages.Add(tag2Message);
+                        }
+                    }
+                    context.SaveChanges();
                 }
-                await context.SaveChangesAsync();
+                return new CommandResult {Success = true};
             }
-            return new CommandResult {Success = true};
         }
     }
 }

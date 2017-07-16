@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using HashtagAggregatorConsumer.Contracts.Interface;
-using HashTagAggregatorConsumer.Service.Settings;
-
+using HashtagAggregatorConsumer.Contracts.Settings;
 using Microsoft.Extensions.Options;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;

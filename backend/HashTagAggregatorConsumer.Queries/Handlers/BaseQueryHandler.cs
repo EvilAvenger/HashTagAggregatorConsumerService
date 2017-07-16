@@ -7,7 +7,7 @@ namespace HashTagAggregatorConsumer.Queries.Handlers
     {
         public SqlApplicationDbContext Context { get; set; }
 
-        public BaseQueryHandler(SqlApplicationDbContext context)
+        protected BaseQueryHandler(SqlApplicationDbContext context)
         {
             Context = context;
         }

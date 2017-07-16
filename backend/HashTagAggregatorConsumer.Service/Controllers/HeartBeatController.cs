@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
 using HashtagAggregatorConsumer.Contracts.Interface;
 
 namespace HashTagAggregatorConsumer.Service.Controllers
 {
     [Route("api/[controller]")]
+    //[Authorize]
     public class HeartBeatController : Controller
     {
         private readonly IBackgroundServiceWorker worker;
@@ -21,11 +21,11 @@ namespace HashTagAggregatorConsumer.Service.Controllers
             return Ok(result);
         }
 
-        [HttpGet("stop")]
+        [HttpGet("stop/{name}")]
         public IActionResult Stop(string name)
         {
-            worker.Stop(name);
-            return Ok();
+            var result = worker.Stop(name);
+            return Ok(result);
         }
     }
 }

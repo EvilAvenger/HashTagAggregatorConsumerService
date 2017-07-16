@@ -6,6 +6,6 @@ namespace HashtagAggregatorConsumer.Contracts.Interface
     {
         ICommandResult Start(string name, int interval);
 
-        void Stop(string name);
+        ICommandResult Stop(string name);
     }
 }

@@ -3,9 +3,9 @@ using HashtagAggregatorConsumer.Contracts.Interface.Jobs;
 
 namespace HashtagAggregatorConsumer.Contracts
 {
-    public class ConsumerJobTask: IConsumerJobTask
+    public class ConsumerJobTask : IConsumerJobTask
     {
-        private const string JobIdPattern = "exchanequeue-dequeue-{0}-id";
+        private const string JobIdPattern = "{0}-consumer-id";
 
         public QueueParams QueueParameters { get; set; }
 

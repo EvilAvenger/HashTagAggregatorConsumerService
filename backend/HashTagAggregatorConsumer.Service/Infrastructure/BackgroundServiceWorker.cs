@@ -2,6 +2,7 @@
 
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
 using HashtagAggregatorConsumer.Contracts.Interface;
+using HashtagAggregatorConsumer.Contracts.Interface.Jobs;
 
 namespace HashTagAggregatorConsumer.Service.Infrastructure
 {
@@ -19,9 +20,9 @@ namespace HashTagAggregatorConsumer.Service.Infrastructure
             return jobBalancer.TryCreateJob(name, interval);
         }
 
-        public void Stop(string name)
+        public ICommandResult Stop(string name)
         {
-            jobBalancer.DeleteJob(name);
+            return jobBalancer.DeleteJob(name);
         }
     }
 }

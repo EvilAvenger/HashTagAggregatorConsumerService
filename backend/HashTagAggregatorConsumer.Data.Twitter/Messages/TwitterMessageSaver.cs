@@ -6,9 +6,6 @@ using HashTagAggregatorConsumer.Data.Twitter.Mappers;
 using MediatR;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Tweetinvi;
-using Tweetinvi.Models;
-using Tweetinvi.Models.DTO;
-
 
 namespace HashTagAggregatorConsumer.Data.Twitter.Messages
 {

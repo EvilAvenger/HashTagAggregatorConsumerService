@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HashTagAggregatorConsumer.Service.Settings
+﻿namespace HashtagAggregatorConsumer.Contracts.Settings
 {
     public class AppSettings
     {

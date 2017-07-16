@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 using HashtagAggregator.Core.Entities.EF;
 using HashtagAggregatorConsumer.Models;
@@ -12,15 +13,11 @@ namespace HashTagAggregatorConsumer.Queries.Mappers
             var results = new List<HashTagEntity>();
             if (tags != null)
             {
-                foreach (var tag in tags)
+                results.AddRange(tags.Select(tag => new HashTagEntity
                 {
-                    var entity = new HashTagEntity
-                    {
-                        HashTag = tag.HashTag.NoHashTag,
-                        IsEnabled = tag.IsEnabled
-                    };
-                    results.Add(entity);
-                }
+                    HashTag = tag.HashTag.TagWithHash,
+                    IsEnabled = tag.IsEnabled
+                }));
             }
             return results;
         }

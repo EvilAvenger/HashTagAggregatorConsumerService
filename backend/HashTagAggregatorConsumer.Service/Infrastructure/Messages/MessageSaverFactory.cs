@@ -1,7 +1,7 @@
 ﻿using HashtagAggregatorConsumer.Contracts.Interface.Messages;
+using HashtagAggregatorConsumer.Contracts.Settings;
 using HashTagAggregatorConsumer.Data.Twitter.Messages;
 using HashTagAggregatorConsumer.Data.Vk.Messages;
-using HashTagAggregatorConsumer.Service.Settings;
 using MediatR;
 using Microsoft.Extensions.Options;
 
