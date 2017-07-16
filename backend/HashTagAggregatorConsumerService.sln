@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26606.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashTagAggregatorConsumer.Service", "HashTagAggregatorConsumer.Service\HashTagAggregatorConsumer.Service.csproj", "{CD6A5AD4-4233-4526-90B4-846389D671E5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashtagAggregatorConsumer.Contracts", "HashtagAggregatorConsumer.Contracts\HashtagAggregatorConsumer.Contracts.csproj", "{5A8630B8-F7ED-45E8-9D9A-9AB0AA7E8E05}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashtagAggregatorConsumer.Data", "HashtagAggregatorConsumer.Data\HashtagAggregatorConsumer.Data.csproj", "{D9FB9A86-8F56-40FE-87CD-686D495F438C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashTagAggregatorConsumer.Queries", "HashTagAggregatorConsumer.Queries\HashTagAggregatorConsumer.Queries.csproj", "{14347DF0-9181-4A2F-ABA0-BD0B170D4D5B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashTagAggregatorConsumer.Data.Vk", "HashTagAggregatorConsumer.Data.Vk\HashTagAggregatorConsumer.Data.Vk.csproj", "{5F4AD73B-9F2B-4D6E-A182-09EC934F4116}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashTagAggregatorConsumer.Data.Twitter", "HashTagAggregatorConsumer.Data.Twitter\HashTagAggregatorConsumer.Data.Twitter.csproj", "{52683F9A-7C8E-4FBF-86E4-C9D47E8390E7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashtagAggregatorConsumer.Models", "HashtagAggregatorConsumer.Models\HashtagAggregatorConsumer.Models.csproj", "{E6C051BD-D568-44D5-BE0A-816469BD7859}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD6A5AD4-4233-4526-90B4-846389D671E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD6A5AD4-4233-4526-90B4-846389D671E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD6A5AD4-4233-4526-90B4-846389D671E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD6A5AD4-4233-4526-90B4-846389D671E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A8630B8-F7ED-45E8-9D9A-9AB0AA7E8E05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A8630B8-F7ED-45E8-9D9A-9AB0AA7E8E05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A8630B8-F7ED-45E8-9D9A-9AB0AA7E8E05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A8630B8-F7ED-45E8-9D9A-9AB0AA7E8E05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9FB9A86-8F56-40FE-87CD-686D495F438C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9FB9A86-8F56-40FE-87CD-686D495F438C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9FB9A86-8F56-40FE-87CD-686D495F438C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9FB9A86-8F56-40FE-87CD-686D495F438C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14347DF0-9181-4A2F-ABA0-BD0B170D4D5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14347DF0-9181-4A2F-ABA0-BD0B170D4D5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14347DF0-9181-4A2F-ABA0-BD0B170D4D5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14347DF0-9181-4A2F-ABA0-BD0B170D4D5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F4AD73B-9F2B-4D6E-A182-09EC934F4116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F4AD73B-9F2B-4D6E-A182-09EC934F4116}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F4AD73B-9F2B-4D6E-A182-09EC934F4116}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F4AD73B-9F2B-4D6E-A182-09EC934F4116}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52683F9A-7C8E-4FBF-86E4-C9D47E8390E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52683F9A-7C8E-4FBF-86E4-C9D47E8390E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52683F9A-7C8E-4FBF-86E4-C9D47E8390E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52683F9A-7C8E-4FBF-86E4-C9D47E8390E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6C051BD-D568-44D5-BE0A-816469BD7859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6C051BD-D568-44D5-BE0A-816469BD7859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6C051BD-D568-44D5-BE0A-816469BD7859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6C051BD-D568-44D5-BE0A-816469BD7859}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

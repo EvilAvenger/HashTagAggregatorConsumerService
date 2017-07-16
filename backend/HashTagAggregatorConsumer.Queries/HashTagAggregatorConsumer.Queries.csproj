@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <ApplicationIcon />
+    <OutputTypeEx>library</OutputTypeEx>
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Cqrs\Queries\" />
+    <Folder Include="Handlers\Queries\" />
+    <Folder Include="Interfaces\Handlers\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HashtagAggregator.Core.Entities" Version="1.0.1" />
+    <PackageReference Include="HashtagAggregator.Data.DataAccess" Version="1.0.2" />
+    <PackageReference Include="MediatR" Version="3.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HashtagAggregatorConsumer.Contracts\HashtagAggregatorConsumer.Contracts.csproj" />
+    <ProjectReference Include="..\HashtagAggregatorConsumer.Models\HashtagAggregatorConsumer.Models.csproj" />
+  </ItemGroup>
+</Project>
