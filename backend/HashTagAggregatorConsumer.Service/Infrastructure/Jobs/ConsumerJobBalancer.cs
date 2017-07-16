@@ -2,6 +2,7 @@
 using System.Linq;
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
 using HashtagAggregator.Service.Contracts;
+using HashtagAggregator.Service.Contracts.Queues;
 using HashtagAggregatorConsumer.Contracts;
 using HashtagAggregatorConsumer.Contracts.Interface.Jobs;
 using HashtagAggregatorConsumer.Contracts.Settings;

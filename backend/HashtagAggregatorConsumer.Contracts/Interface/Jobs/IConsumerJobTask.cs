@@ -1,4 +1,5 @@
 ﻿using System;
+using HashtagAggregator.Service.Contracts.Queues;
 
 namespace HashtagAggregatorConsumer.Contracts.Interface.Jobs
 {

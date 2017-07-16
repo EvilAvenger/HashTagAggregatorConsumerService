@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="HashtagAggregator.Service.Contracts" Version="1.0.0" />
+    <PackageReference Include="HashtagAggregator.Service.Contracts" Version="1.0.2" />
     <PackageReference Include="MediatR" Version="3.0.1" />
   </ItemGroup>
 
