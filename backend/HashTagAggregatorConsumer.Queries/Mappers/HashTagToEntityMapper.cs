@@ -3,6 +3,7 @@ using System.Linq;
 
 using HashtagAggregator.Core.Entities.EF;
 using HashtagAggregatorConsumer.Models;
+using HashtagAggregatorConsumer.Models.Comparers;
 
 namespace HashTagAggregatorConsumer.Queries.Mappers
 {
@@ -13,6 +14,7 @@ namespace HashTagAggregatorConsumer.Queries.Mappers
             var results = new List<HashTagEntity>();
             if (tags != null)
             {
+                tags = tags.Distinct(new HashtagEqualityComparer());
                 results.AddRange(tags.Select(tag => new HashTagEntity
                 {
                     HashTag = tag.HashTag.TagWithHash,
