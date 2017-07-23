@@ -70,10 +70,10 @@ namespace HashTagAggregatorConsumer.Service
                 ServerName = Configuration.GetSection("HangfireSettings:ServerName").Value
             };
             app.UseHangfireServer(options);
-
+            app.UseHangfireDashboard();
             if (env.IsEnvironment("dev"))
             {
-                app.UseHangfireDashboard();
+           
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors("CorsPolicy");
@@ -86,7 +86,7 @@ namespace HashTagAggregatorConsumer.Service
             //    CacheDuration = TimeSpan.FromMinutes(10)
             //});
 
-            accessor.CancelRecurringJobs();
+           // accessor.CancelRecurringJobs();
             app.UseMvc();
         }
     }
