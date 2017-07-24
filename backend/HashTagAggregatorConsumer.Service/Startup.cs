@@ -24,6 +24,12 @@ namespace HashTagAggregatorConsumer.Service
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
+
+            if (env.IsEnvironment("dev"))
+            {
+                builder.AddApplicationInsightsSettings(developerMode: true);
+            }
+
             Configuration = builder.Build();
         }
 
@@ -43,6 +49,7 @@ namespace HashTagAggregatorConsumer.Service
 
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddHangfire(config => config.UseSqlServerStorage(connectionString));
+            services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddMvc();
 
@@ -54,7 +61,7 @@ namespace HashTagAggregatorConsumer.Service
 
             IContainer container = new AutofacModulesConfigurator().Configure(services);
             GlobalConfiguration.Configuration.UseActivator(new AutofacContainerJobActivator(container));
-
+            services.AddApplicationInsightsTelemetry(Configuration);
             return container.Resolve<IServiceProvider>();
         }
 
@@ -73,7 +80,6 @@ namespace HashTagAggregatorConsumer.Service
             app.UseHangfireDashboard();
             if (env.IsEnvironment("dev"))
             {
-           
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors("CorsPolicy");
