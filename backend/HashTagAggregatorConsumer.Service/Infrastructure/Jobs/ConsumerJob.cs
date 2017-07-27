@@ -7,24 +7,22 @@ using HashtagAggregatorConsumer.Contracts.Interface;
 using HashtagAggregatorConsumer.Contracts.Interface.Jobs;
 using HashtagAggregatorConsumer.Contracts.Interface.Messages;
 using HashtagAggregatorConsumer.Data.Result;
-using Microsoft.Extensions.Logging;
 
 namespace HashTagAggregatorConsumer.Service.Infrastructure.Jobs
 {
-    [AutomaticRetry(Attempts = 1)]
     public class ConsumerJob : IConsumberJob
     {
         private readonly IQueueConsumer queue;
         private readonly IMessageSaverFactory factory;
-        private readonly ILogger<ConsumerJob> logger;
 
-        public ConsumerJob(IQueueConsumer queue, IMessageSaverFactory factory, ILogger<ConsumerJob> logger)
+        public ConsumerJob(IQueueConsumer queue, IMessageSaverFactory factory)
         {
             this.queue = queue;
             this.factory = factory;
-            this.logger = logger;
         }
 
+        [Queue("consumerserver")]
+        [AutomaticRetry(Attempts = 1)]
         public async Task<ICommandResult> Execute(ConsumerJobTask task)
         {
             var saver = factory.GetSaver(task.QueueParameters.Name);

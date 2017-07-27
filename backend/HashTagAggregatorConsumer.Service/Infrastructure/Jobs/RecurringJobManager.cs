@@ -5,17 +5,21 @@ using Hangfire;
 using HashtagAggregator.Core.Contracts.Interface.Cqrs.Command;
 using HashtagAggregatorConsumer.Contracts;
 using HashtagAggregatorConsumer.Contracts.Interface.Jobs;
+using HashtagAggregatorConsumer.Contracts.Settings;
 using HashtagAggregatorConsumer.Data.Result;
+using Microsoft.Extensions.Options;
 
 namespace HashTagAggregatorConsumer.Service.Infrastructure.Jobs
 {
     public class RecurringJobManager : IConsumerJobManager
     {
         private readonly IConsumberJob job;
+        private readonly IOptions<HangfireSettings> hangfireOptions;
 
-        public RecurringJobManager(IConsumberJob job)
+        public RecurringJobManager(IConsumberJob job, IOptions<HangfireSettings> hangfireOptions)
         {
             this.job = job;
+            this.hangfireOptions = hangfireOptions;
         }
 
         public ICommandResult AddJob(IConsumerJobTask task)
@@ -23,7 +27,8 @@ namespace HashTagAggregatorConsumer.Service.Infrastructure.Jobs
             RecurringJob.AddOrUpdate<IConsumberJob>(
                 task.JobId,
                 x => x.Execute((ConsumerJobTask) task),
-                Cron.MinuteInterval(task.Interval));
+                Cron.MinuteInterval(task.Interval),
+                queue: hangfireOptions.Value.ServerName);
 
             return new CommandResult {Success = true};
         }
