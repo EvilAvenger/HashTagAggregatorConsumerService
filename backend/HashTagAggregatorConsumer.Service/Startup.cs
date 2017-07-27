@@ -102,7 +102,7 @@ namespace HashTagAggregatorConsumer.Service
             app.UseHangfireServer(new BackgroundJobServerOptions
             {
                 ServerName = Configuration.GetSection("HangfireSettings:ServerName").Value,
-                Queues = new[] { "consumerserver" }
+                Queues = new[] { Configuration.GetSection("HangfireSettings:ServerName").Value }
             });
             app.UseHangfireDashboard();
             if (env.IsEnvironment("dev"))

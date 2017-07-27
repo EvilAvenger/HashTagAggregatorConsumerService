@@ -21,7 +21,6 @@ namespace HashTagAggregatorConsumer.Service.Infrastructure.Jobs
             this.factory = factory;
         }
 
-        [Queue("consumerserver")]
         [AutomaticRetry(Attempts = 1)]
         public async Task<ICommandResult> Execute(ConsumerJobTask task)
         {
