@@ -2,7 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <ApplicationInsightsResourceId>/subscriptions/8d305b0e-81ea-4a2e-8498-8d6d76cabd87/resourcegroups/MyLearningResourceGroup/providers/microsoft.insights/components/HashTagAggregatorConsumerServiceInsights</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/8d305b0e-81ea-4a2e-8498-8d6d76cabd87/resourcegroups/MyLearningResourceGroup/providers/microsoft.insights/components/HashTagAggregatorConsumerServiceInsights</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Properties\PublishProfiles\HashTagAggregatorConsumerService - Web Deploy.pubxml" />
+  </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0-preview1-final" />
@@ -24,6 +30,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0-preview2-final" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0-preview2-final" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="1.4.1-dev-10155" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="2.4.0" />
+    <PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="2.2.1" />
     <PackageReference Include="Serilog.Sinks.File" Version="3.2.0" />
     <PackageReference Include="Serilog.Sinks.Literate" Version="3.0.1-dev-00044" />
     <PackageReference Include="WindowsAzure.Storage" Version="8.2.0" />
@@ -39,6 +47,14 @@
     <ProjectReference Include="..\HashTagAggregatorConsumer.Data.Vk\HashTagAggregatorConsumer.Data.Vk.csproj" />
     <ProjectReference Include="..\HashtagAggregatorConsumer.Data\HashtagAggregatorConsumer.Data.csproj" />
     <ProjectReference Include="..\HashTagAggregatorConsumer.Queries\HashTagAggregatorConsumer.Queries.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
 </Project>
