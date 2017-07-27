@@ -72,7 +72,6 @@ namespace HashTagAggregatorConsumer.Service
 
             var container = new AutofacModulesConfigurator().Configure(services);
             GlobalConfiguration.Configuration.UseActivator(new AutofacContainerJobActivator(container));
-            services.AddApplicationInsightsTelemetry(Configuration);
             return container.Resolve<IServiceProvider>();
         }
 
@@ -81,8 +80,6 @@ namespace HashTagAggregatorConsumer.Service
         {
             loggerFactory.AddDebug();
             loggerFactory.AddSerilog();
-
-
             app.UseExceptionHandler(options =>
             {
                 options.Run(
@@ -120,6 +117,7 @@ namespace HashTagAggregatorConsumer.Service
             //});
 
             // accessor.CancelRecurringJobs();
+            accessor.CancelRecurringJobs();
             app.UseMvc();
         }
     }
