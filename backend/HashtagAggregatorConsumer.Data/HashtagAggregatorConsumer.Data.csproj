@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Hangfire" Version="1.6.14" />
+    <PackageReference Include="Hangfire" Version="1.6.15" />
   </ItemGroup>
 
   <ItemGroup>
