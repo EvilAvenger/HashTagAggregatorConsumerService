@@ -2,7 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <ApplicationInsightsResourceId>/subscriptions/8d305b0e-81ea-4a2e-8498-8d6d76cabd87/resourcegroups/MyLearningResourceGroup/providers/microsoft.insights/components/HashTagAggregatorConsumerServiceInsights</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/8d305b0e-81ea-4a2e-8498-8d6d76cabd87/resourcegroups/MyLearningResourceGroup/providers/microsoft.insights/components/HashTagAggregatorConsumerServiceInsights</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Properties\PublishProfiles\HashTagAggregatorConsumerService - Web Deploy.pubxml" />
+  </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0-preview1-final" />
@@ -11,22 +17,24 @@
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
     <PackageReference Include="AutofacSerilogIntegration" Version="2.0.1-dev-00023" />
-    <PackageReference Include="HangFire" Version="1.6.14" />
-    <PackageReference Include="HashtagAggregator.Data.DataAccess" Version="1.0.2" />
+    <PackageReference Include="HangFire" Version="1.6.15" />
+    <PackageReference Include="HashtagAggregator.Data.DataAccess" Version="1.0.7" />
     <PackageReference Include="HashtagAggregator.Service.Contracts" Version="1.0.2" />
-    <PackageReference Include="HashtagAggregator.Shared.Common" Version="1.0.4" />
+    <PackageReference Include="HashtagAggregator.Shared.Common" Version="1.0.5" />
     <PackageReference Include="IdentityServer4" Version="1.5.2" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="1.2.1" />
     <PackageReference Include="MediatR" Version="3.0.1" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="3.0.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0-preview2-final" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0-preview2-final" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0-preview2-final" />
-    <PackageReference Include="Serilog.Extensions.Logging" Version="1.4.1-dev-10155" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="2.0.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="2.4.0" />
+    <PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="2.2.1" />
     <PackageReference Include="Serilog.Sinks.File" Version="3.2.0" />
     <PackageReference Include="Serilog.Sinks.Literate" Version="3.0.1-dev-00044" />
-    <PackageReference Include="WindowsAzure.Storage" Version="8.2.0" />
+    <PackageReference Include="WindowsAzure.Storage" Version="8.4.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +47,14 @@
     <ProjectReference Include="..\HashTagAggregatorConsumer.Data.Vk\HashTagAggregatorConsumer.Data.Vk.csproj" />
     <ProjectReference Include="..\HashtagAggregatorConsumer.Data\HashtagAggregatorConsumer.Data.csproj" />
     <ProjectReference Include="..\HashTagAggregatorConsumer.Queries\HashTagAggregatorConsumer.Queries.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
 </Project>

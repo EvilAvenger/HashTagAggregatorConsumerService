@@ -16,6 +16,7 @@ namespace HashTagAggregatorConsumer.Service
                 .UseUrls("http://localhost:5020/")
                 .UseDefaultServiceProvider(options =>
                     options.ValidateScopes = false)
+                .UseApplicationInsights()
                 .Build();
     }
 }

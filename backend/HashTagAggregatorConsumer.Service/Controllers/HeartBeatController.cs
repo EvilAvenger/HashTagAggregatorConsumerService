@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using HashtagAggregatorConsumer.Contracts.Interface;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HashTagAggregatorConsumer.Service.Controllers
 {
@@ -12,6 +13,13 @@ namespace HashTagAggregatorConsumer.Service.Controllers
         public HeartBeatController(IBackgroundServiceWorker worker)
         {
             this.worker = worker;
+        }
+
+        [HttpGet("ping")]
+        [AllowAnonymous]
+        public IActionResult Ping()
+        {
+            return Ok();
         }
 
         [HttpGet("start/{name:required}/{interval:int}")]
