@@ -22,6 +22,7 @@ namespace HashTagAggregatorConsumer.Service.Infrastructure.Jobs
         }
 
         [AutomaticRetry(Attempts = 1)]
+        [Queue("consumerserver")]
         public async Task<ICommandResult> Execute(ConsumerJobTask task)
         {
             var saver = factory.GetSaver(task.QueueParameters.Name);
